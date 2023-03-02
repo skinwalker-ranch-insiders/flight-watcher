@@ -24,7 +24,7 @@ while True:
         print('                    #############################################')
         print('                    ###       Skinwalker Flight Watcher       ###')
         print('                    #############################################')
-        print('Id, Reg, FSeen, Alt, Lat, Long, Spd, Trak, Sig')
+        print('Id, Reg, Alt, Lat, Long, Spd, Trak, Sig, Last Seen')
         printed_lines = set()
         for ac in ac_list:
             fseen = ac.get('FSeen', None)
