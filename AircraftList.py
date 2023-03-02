@@ -4,12 +4,12 @@ import os
 import pafy
 import vlc
 from datetime import datetime
+from ac_list import acHotList
+
+last_alert_time = None
 
 """ Get Alerts for AC of Interest """
 hot_alert_url = 'https://www.youtube.com/watch?v=-bzWSJG93P8' 
-acHotList = ['LIST', 'OF-TAIL', 'NUMBERS']
-
-last_alert_time = None
 
 while True:
     """ Change IP below to your VRS systems IP """
@@ -32,6 +32,7 @@ while True:
                 fseen = int(fseen[6:-2]) / 1000
                 fseen = datetime.fromtimestamp(fseen).strftime('%Y-%m-%d %H:%M:%S')
             line = ','.join(str(ac.get(key, '')) for key in ['Id', 'Reg', 'Alt', 'Lat', 'Long', 'Spd', 'Trak', 'Sig'])
+            """ Create list of AC with only unique lines (No Duplicate Entries) """
             if line not in printed_lines:
                 printed_lines.add(line)
                 line += fseen if fseen is not None else ''
