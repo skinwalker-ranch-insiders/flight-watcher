@@ -41,8 +41,8 @@ while True:
                 with open('acList.csv', 'a') as f:
                     f.write(line + '\n')
             """ Alert on specific AC when detected """
-            if ac.get('Reg') in acHotList:
-                if last_alert_time is None or (datetime.now() - last_alert_time).total_seconds() >= 240:
+            if (ac.get('Reg') in acHotList) or (ac.get('Icao') in acHotList) or (ac.get('Call') in acHotList):
+                if last_alert_time is None or (datetime.now() - last_alert_time).total_seconds() >= 180:
                     last_alert_time = datetime.now()
                     url = hot_alert_url
                     video = pafy.new(url)
